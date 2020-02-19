@@ -1,8 +1,13 @@
 package Principal;
-import java.util.Scanner;
+import java.util.*;
 import Elementos.Ejercicio1;
 import Elementos.Ejercicio2;
 import Elementos.Ejercicio4;
+import Elementos.Ejercicio5;
+import Elementos.Ejercicio6;
+import Elementos.Ejercicio7;
+import Elementos.Ejercicio8;
+import Elementos.Ejercicio9;
 
 public class Menu {
 	public Menu() {
@@ -168,15 +173,160 @@ public class Menu {
 					break;
 				}
 		case 5:
-				break;
-		case 6:
-				break;
+				System.out.println("Ingrese N números. Se detendrá el proceso al ingresar 0");
+				List<Integer> arregloAuxiliar = new ArrayList<Integer>();
+				while(true) {
+					String aux = leer.next();
+					try {
+						numero = Integer.parseInt(aux);
+						if(numero==0) {
+							break;
+						}
+						arregloAuxiliar.add(numero);
+					}
+					catch(Exception e) {
+						System.out.println("Ingrese una opción válida. ");
+					}
+				}
+				Ejercicio5 holder5 = new Ejercicio5(arregloAuxiliar);
+				holder5.getNumeros();
+				System.out.println(">Desea continuar? S/N");
+				if(leer.next().toLowerCase().equals("n")){
+					System.out.println("ADIOS!");
+					System.exit(0);
+				}
+				else {
+					menuElecciones(menuPrincipal());
+					break;
+				}
+		case 6: 
+				System.out.println("Ingrese N nombres con J, ganará si acierta al que tengo en mente.");
+				while(true) {
+					String aux = leer.next();
+					try {
+						if(String.valueOf(aux.charAt(0)).toLowerCase().equals("j")) {
+							Ejercicio6 holder6 = new Ejercicio6(aux);
+							if(holder6.getNombre()) {
+								System.out.println("Has acertado! el nombre era Juan. ");
+								break;
+							}
+							else {
+								throw new Exception();
+							}
+						}
+						else {
+							System.out.println("Recuerda, nombres con J...");
+							throw new Exception();
+						}
+					}
+					catch(Exception e) {
+						System.out.println("Inténtalo nuevamente... ");
+					}
+				}
+				System.out.println(">Desea continuar? S/N");
+				if(leer.next().toLowerCase().equals("n")){
+					System.out.println("ADIOS!");
+					System.exit(0);
+				}
+				else {
+					menuElecciones(menuPrincipal());
+					break;
+				}
 		case 7:
-				break;
-		case 8:
-				break;
+				ArrayList<String> auxList = new ArrayList<String>();
+				System.out.println("> Ingrese 10 nombres.");
+	        	for(int i=0;i<10;i++){
+	        		System.out.println((i+1)+": ");
+	        		auxList.add(leer.next().toLowerCase());
+	        	}
+	        	Ejercicio7 holder7 = new Ejercicio7(auxList);
+	        	holder7.getFrequency();
+	        	System.out.println(">Desea continuar? S/N");
+				if(leer.next().toLowerCase().equals("n")){
+					System.out.println("ADIOS!");
+					System.exit(0);
+				}
+				else {
+					menuElecciones(menuPrincipal());
+					break;
+				}
+		case 8: 
+				System.out.println(">I ngrese tamaño del arreglo: ");
+				String[] nombres = new String[leer.nextInt()];
+				leer.nextLine();
+				System.out.println("> Ingrese nombres de Full Stack's: ");
+				for(int i=0;i<nombres.length;i++) {
+					System.out.println((i+1)+": ");
+					nombres[i] = leer.nextLine();
+				}
+				Ejercicio8 holder8 = new Ejercicio8(nombres);
+				holder8.imprimir5();
+				System.out.println(">Desea continuar? S/N");
+				if(leer.next().toLowerCase().equals("n")){
+					System.out.println("ADIOS!");
+					System.exit(0);
+				}
+				else {
+					menuElecciones(menuPrincipal());
+					break;
+				}
 		case 9:
-				break;
+			    List<String[]> agenda = new ArrayList<String[]>();
+			    while(true) {
+			    	System.out.println("> Ingrese nombre: ");
+			    	String nombreAgenda = leer.nextLine();
+			    	System.out.println("> Ingrese apellido: ");
+			    	String apellidoAgenda = leer.nextLine();
+			    	System.out.println("> Ingrese teléfono: ");
+			    	int telefonoAgendaAux;
+			    	while(true) {
+						String aux = leer.nextLine();
+						try {
+							telefonoAgendaAux = Integer.parseInt(aux);
+							break;
+						}
+						catch(Exception e) {
+							System.out.println("Ingrese una teléfono válido. ");
+						}
+					}
+			    	String telefonoAgenda = Integer.toString(telefonoAgendaAux);
+			    	System.out.println("> Ingrese email: ");
+			    	String emailAgenda;
+			    	while(true) {
+						String aux = leer.nextLine();
+						try {
+							if(aux.contains("@") & aux.contains(".")) {
+								emailAgenda = aux;
+								break;
+							}
+							else {
+								throw new Exception();
+							}
+						}
+						catch(Exception e) {
+							System.out.println("Ingrese un email válido. ");
+						}
+					}
+			    	agenda.add(new String[] { nombreAgenda, apellidoAgenda, (String)telefonoAgenda, emailAgenda });
+			    	System.out.println(">Desea continuar? S/N");
+					if(leer.nextLine().toLowerCase().equals("n")){
+						break;
+					}
+					else {
+						continue;
+					}
+			    }
+			    Ejercicio9 holder9 = new Ejercicio9(agenda);
+			    holder9.mostrarElementos();
+			    System.out.println(">Desea continuar? S/N");
+				if(leer.nextLine().toLowerCase().equals("n")){
+					System.out.println("ADIOS!");
+					System.exit(0);
+				}
+				else {
+					menuElecciones(menuPrincipal());
+					break;
+				}
 		case 10:
 				System.out.println("ADIOS!");
 				System.exit(0);
