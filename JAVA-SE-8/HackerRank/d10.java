@@ -17,18 +17,23 @@ public class Solution {
         }
         String binario = result.reverse().toString();
         int respuesta=1;
+        ArrayList<Integer> maximos = new ArrayList<Integer>();
+        maximos.add(0);
         for(int i = 0; i < binario.length() ; i++) { 
             try {
                 if(binario.charAt(i)=='1' & binario.charAt(i)==binario.charAt(i+1)) {
                     respuesta++;
                 }
+                else {
+                	maximos.add(respuesta);
+                	respuesta = 1;
+                }
             }
             catch(Exception e) {
             }
         }
-        return respuesta; 
+        return Collections.max(maximos);
     }
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
